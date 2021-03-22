@@ -22,7 +22,7 @@ namespace Energetic
             }
         }
 
-        protected virtual bool SetPropertyValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null, Action? onChanged = null)
+        protected virtual bool SetPropertyValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "", Action? onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingField, value)) return false;
             backingField = value;
@@ -31,7 +31,7 @@ namespace Energetic
             return true;
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
