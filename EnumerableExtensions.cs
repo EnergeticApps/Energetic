@@ -16,10 +16,11 @@ namespace System.Collections.Generic
         /// or if the count of each enumerable is different to the other. </returns>
         public static bool AreAllTheSameAs<T>(this IEnumerable<T>? enumerable, IEnumerable<T>? other)
         {
-            if (enumerable.IsNotNullOrEmpty() && other.IsNotNullOrEmpty())
+            if (enumerable.IsNullOrEmpty() && other.IsNullOrEmpty())
                 return true;
 
-            return enumerable?.Count() == other?.Count() && (enumerable.Except(other).Any() || other.Except(enumerable).Any());
+            return enumerable?.Count() == other?.Count() && 
+                !(enumerable.Except(other).Any() || other.Except(enumerable).Any());
         }
 
         /// <summary>
