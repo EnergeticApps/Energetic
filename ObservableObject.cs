@@ -51,7 +51,7 @@ namespace Energetic
         {
             MemberExpression operand;
             LambdaExpression lambdaExpression = (LambdaExpression)expression;
-            if (lambdaExpression.Body as UnaryExpression != null)
+            if (lambdaExpression.Body as UnaryExpression is { })
             {
                 UnaryExpression body = (UnaryExpression)lambdaExpression.Body;
                 operand = (MemberExpression)body.Operand;
