@@ -8,6 +8,31 @@ namespace System
     public static class StringExtensions
     {
         /// <summary>
+        /// Returns the string if it is not null or empty, or the first alternative that is not null or empty.
+        /// </summary>
+        /// <param name="instance">A string</param>
+        /// <param name="alternative">The second choice</param>
+        /// <param name="alternatives">The alternatives in order of preference</param>
+        /// <returns></returns>
+        public static string Coalesce(this string? value, string? alternative, params string?[] alternatives)
+        {
+            if (!string.IsNullOrEmpty(value))
+                return value!;
+
+            if (!string.IsNullOrEmpty(alternative))
+                return alternative!;
+
+            for (int i = 0; i < alternatives.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(alternatives[i]))
+                    return alternatives[i]!;
+            }
+
+            return string.Empty;
+        }
+
+
+        /// <summary>
         /// Extracts any numbers (represented by the characters 0-9 and the decimal point "." symbol) from a string.
         /// a <see cref="double"/>.
         /// </summary>
