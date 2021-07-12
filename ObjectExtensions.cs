@@ -5,43 +5,49 @@ namespace System
 {
     public static class ObjectExtensions
     {
-        ///// <summary>
-        ///// Returns the instance if it is not null, or the fallback if the instance is null.
-        ///// </summary>
-        ///// <typeparam name="T"></typeparam>
-        ///// <param name="instance"></param>
-        ///// <param name="fallBackValue"></param>
-        ///// <param name="alternatives"></param>
-        ///// <returns></returns>
-        //public static T Coalesce<T>(this T? instance, T fallBackValue, params T[] alternatives)
-        //    where T : class
-        //{
-        //    if (!(instance is null))
-        //        return instance!;
+        /// <summary>
+        /// Returns the instance if it is not null, or the alternatives in order of preference if the instance is null.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value">An object</param>
+        /// <param name="alternative">The second choice, i.e. best alternative to the value.</param>
+        /// <param name="alternatives">The other alternatives in order of preference</param>
+        /// <returns></returns>
+        public static T Coalesce<T>(this T? value, T alternative, params T[] alternatives)
+            where T : class
+        {
+            if (!(value is null))
+                return value!;
 
-        //    for (int i = 0; i < alternatives.Length; i++)
-        //    {
-        //        if (!(alternatives[i] is null))
-        //            return alternatives[i];
-        //    }
+            if (!(alternative is null))
+                return alternative!;
 
-        //    return fallBackValue;
-        //}
+            for (int i = 0; i < alternatives.Length; i++)
+            {
+                if (!(alternatives[i] is null))
+                    return alternatives[i];
+            }
+
+            throw new InvalidOperationException("No non-null alternative was provided.");
+        }
 
 
-        //public static T Coalesce<T>(this T? instance, T fallBackValue, params T?[] alternatives)
-        //    where T : struct
-        //{
-        //    if (instance.HasValue)
-        //        return instance.Value;
+        public static T Coalesce<T>(this T? value, T? alternative, params T?[] alternatives)
+            where T : struct
+        {
+            if (value.HasValue)
+                return value.Value;
 
-        //    for (int i = 0; i < alternatives.Length; i++)
-        //    {
-        //        if (alternatives[i].HasValue)
-        //            return alternatives[i]!.Value;
-        //    }
+            if (alternative.HasValue)
+                return alternative.Value;
 
-        //    return fallBackValue;
-        //}
+            for (int i = 0; i < alternatives.Length; i++)
+            {
+                if (alternatives[i].HasValue)
+                    return alternatives[i]!.Value;
+            }
+
+            throw new InvalidOperationException("No non-null alternative was provided.");
+        }
     }
 }
