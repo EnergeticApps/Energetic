@@ -21,7 +21,7 @@ namespace System
         public static string GetName<TEnum>(this Enum enumValue)
             where TEnum : Enum
         {
-            return Enum.GetName(typeof(TEnum), enumValue);
+            return Enum.GetName(typeof(TEnum), enumValue) ?? string.Empty;
         }
 
         public static object GetValue<TEnum>(this TEnum enumValue)

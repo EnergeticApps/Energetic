@@ -16,7 +16,7 @@ namespace Energetic
         public virtual bool IsBusy
         {
             get => _isBusy;
-            set
+            protected set
             {
                 SetPropertyValue(ref _isBusy, value);
             }
@@ -24,7 +24,9 @@ namespace Energetic
 
         protected virtual bool SetPropertyValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "", Action? onChanged = null)
         {
-            if (EqualityComparer<T>.Default.Equals(backingField, value)) return false;
+            if (EqualityComparer<T>.Default.Equals(backingField, value))
+                return false;
+
             backingField = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);

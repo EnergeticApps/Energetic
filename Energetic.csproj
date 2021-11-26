@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
+		<TargetFramework>net5.0</TargetFramework>
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -18,16 +18,17 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<PackageIcon>icon.png</PackageIcon>
+		<Configurations>Debug;Release;Staging</Configurations>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="3.1.13" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.13" />
-		<PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+		<PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="5.0.9" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
 		<PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
 		<PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
-		<PackageReference Include="System.Text.Json" Version="4.7.2" />
+		<PackageReference Include="System.Text.Json" Version="5.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
